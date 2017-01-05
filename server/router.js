@@ -1,9 +1,9 @@
 'use strict';
-let router = require('koa-router')();
-let uuid = require('node-uuid');
-let jwt = require('jsonwebtoken');
-let config = require('./config');
-let jwtMiddleware = require('koa-jwt')({ secret: config.jwt_secret });
+const router = require('koa-router')();
+const uuid = require('node-uuid');
+const jwt = require('jsonwebtoken');
+const config = require('./config');
+const jwtMiddleware = require('koa-jwt')({ secret: config.jwt_secret });
 
 let posts = [
   {

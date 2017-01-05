@@ -25,7 +25,7 @@ module.exports = {
         loader: 'babel',
         exclude: /(node_modules)/,
         query: {
-          presets: ['es2015', 'angular2'],
+          presets: ['es2015', 'stage-0', 'angular2'],
           plugins: babelPlugins
         }
       },

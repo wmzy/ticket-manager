@@ -1,11 +1,11 @@
 'use strict';
-let koa = require('koa');
-let staticServe = require('koa-static');
-let bodyParser = require('koa-bodyparser');
-let config = require('./config');
-let router = require('./router');
+const koa = require('koa');
+const staticServe = require('koa-static');
+const bodyParser = require('koa-bodyparser');
+const config = require('./config');
+const router = require('./router');
 
-let app = koa();
+const app = koa();
 
 app.use(staticServe(config.staticPath));
 
