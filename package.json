@@ -1,6 +1,6 @@
 {
-  "name": "angular2-esnext-starter",
-  "version": "1.0.0",
+  "name": "ticket-manager",
+  "version": "0.0.1",
   "main": "server/index.js",
   "scripts": {
     "start": "node server/index.js",
@@ -9,23 +9,24 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/blacksonic/angular2-esnext-starter.git"
+    "url": "git+https://github.com/wmzy/ticket-manager.git"
   },
   "author": {
-    "name": "blacksonic",
-    "email": "soos.gabor86@gmail.com"
+    "name": "wmzy",
+    "email": "1256573276@qq.com"
   },
   "license": "ISC",
   "keywords": [
+    "ticket",
     "angular2",
     "babel",
     "es6",
     "webpack",
     "gulp"
   ],
-  "description": "Angular 2 development and testing examples with Babel in Javascript (ES6/ES7).",
+  "description": "A ticket manager system.",
   "engines": {
-    "node": "6.5.0"
+    "node": "7.3.0"
   },
   "dependencies": {
     "jsonwebtoken": "7.2.1",
