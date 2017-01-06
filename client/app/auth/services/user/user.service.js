@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import {Injectable} from '@angular/core';
+import {Http} from '@angular/http';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
-import { StorageService } from '../storage/storage.service';
-import { RequestService } from '../request/request.service';
+import {StorageService} from '../storage/storage.service';
+import {RequestService} from '../request/request.service';
 
 @Injectable()
 export class UserService {
@@ -20,17 +20,23 @@ export class UserService {
     }
   }
 
+  signUp(info) {
+    return this._http
+      .post('/sign-up', JSON.stringify(info), {headers: this._request.getJsonHeaders()})
+      .map(res => res.json())
+      .map(({authToken}) => {
+        this._storage.setAuthToken(authToken);
+        this._loggedIn.next(true);
+      });
+  }
+
   login(credentials) {
     return this._http
-      .post('/login', JSON.stringify(credentials), { headers: this._request.getJsonHeaders() })
+      .put('/login', JSON.stringify(credentials), {headers: this._request.getJsonHeaders()})
       .map(res => res.json())
-      .map((res) => {
-        if (res.success) {
-          this._storage.setAuthToken(res.auth_token);
-          this._loggedIn.next(true);
-        }
-
-        return res.success;
+      .map(({authToken}) => {
+        this._storage.setAuthToken(authToken);
+        this._loggedIn.next(true);
       });
   }
 
