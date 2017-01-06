@@ -2,7 +2,7 @@ export const translation = {
   pageTitle: 'Angular 2 App',
 
   menu: {
-    posts: 'Posts',
+    tickets: 'Tickets',
     about: 'About',
     login: 'Login',
     logout: 'Logout'

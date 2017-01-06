@@ -1,15 +1,15 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
-import template from './post-list-item.template.html';
+import template from './ticket-list-item.template.html';
 import { UserService } from '../../../auth';
 
 @Component({
-  selector: 'post-list-item',
+  selector: 'ticket-list-item',
   template: template,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PostListItemComponent {
-  @Input() post;
+export class TicketListItemComponent {
+  @Input() ticket;
 
   constructor(userService: UserService) {
     this.userService = userService;

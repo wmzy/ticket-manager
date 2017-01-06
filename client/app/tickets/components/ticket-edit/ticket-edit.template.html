@@ -1,0 +1,7 @@
+<div class="row">
+    <div class="col-sm-12">
+        <h1>Edit ticket</h1>
+
+        <ticket-form [ticket]="ticket | async" (saved)="onSave($event)"></ticket-form>
+    </div>
+</div>

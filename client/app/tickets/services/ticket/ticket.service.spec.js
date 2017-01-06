@@ -3,15 +3,15 @@ import { MockBackend } from '@angular/http/testing';
 import { RequestMethod, Headers } from '@angular/http';
 import { Http, BaseRequestOptions, Response, ResponseOptions } from '@angular/http';
 
-import { PostService } from './post.service';
+import { TicketService } from './ticket.service';
 
 import { AUTH_PROVIDERS, RequestService } from '../../../auth';
 
-describe('PostService', () => {
+describe('TicketService', () => {
   let service;
   let backend;
-  let singlePost = { _id: 'asdgre', name: 'Angular', website: 'http://angular.io' };
-  let postsResponse = [singlePost];
+  let singleTicket = { _id: 'asdgre', name: 'Angular', website: 'http://angular.io' };
+  let ticketsResponse = [singleTicket];
 
   function returnsResponse(response, method, url, body, headers) {
     backend.connections.subscribe(connection => {
@@ -39,7 +39,7 @@ describe('PostService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        PostService,
+        TicketService,
         MockBackend,
         BaseRequestOptions,
         AUTH_PROVIDERS,
@@ -60,57 +60,57 @@ describe('PostService', () => {
     spyOn(RequestService.prototype, 'getAuthHeaders').and.returnValue(headers);
   });
 
-  beforeEach(inject([PostService, MockBackend], (postService, mockBackend) => {
-    service = postService;
+  beforeEach(inject([TicketService, MockBackend], (ticketService, mockBackend) => {
+    service = ticketService;
     backend = mockBackend;
   }));
 
-  it('should refresh remote posts', () => {
-    returnsResponse(postsResponse, RequestMethod.Get, '/posts');
+  it('should refresh remote tickets', () => {
+    returnsResponse(ticketsResponse, RequestMethod.Get, '/tickets');
 
-    service.remotePosts.subscribe((posts) => {
-      if (posts.length) {
-        expect(posts).toEqual(postsResponse);
+    service.remoteTickets.subscribe((tickets) => {
+      if (tickets.length) {
+        expect(tickets).toEqual(ticketsResponse);
       }
     });
 
-    service.refreshPosts();
+    service.refreshTickets();
   });
 
-  it('should return posts got in response', () => {
-    returnsResponse(postsResponse, RequestMethod.Get, '/posts');
+  it('should return tickets got in response', () => {
+    returnsResponse(ticketsResponse, RequestMethod.Get, '/tickets');
 
-    service.refreshPosts().subscribe((posts) => {
-      expect(posts).toEqual(postsResponse);
+    service.refreshTickets().subscribe((tickets) => {
+      expect(tickets).toEqual(ticketsResponse);
     });
   });
 
-  it('should return post', () => {
-    returnsResponse(singlePost, RequestMethod.Get, `/post/${singlePost._id}`);
+  it('should return ticket', () => {
+    returnsResponse(singleTicket, RequestMethod.Get, `/tickets/${singleTicket._id}`);
 
-    service.getPost(singlePost._id).subscribe((post) => {
-      expect(post).toEqual(singlePost);
+    service.getTicket(singleTicket._id).subscribe((ticket) => {
+      expect(ticket).toEqual(singleTicket);
     });
   });
 
-  it('should add post', () => {
-    returnsResponse(singlePost, RequestMethod.Post, '/post', JSON.stringify(singlePost), {
+  it('should add ticket', () => {
+    returnsResponse(singleTicket, RequestMethod.Ticket, '/ticket', JSON.stringify(singleTicket), {
       'Content-Type': 'application/json', Authorization: 'Bearer secretToken'
     });
 
-    service.addPost(singlePost).subscribe((post) => {
-      expect(post).toEqual(singlePost);
+    service.addTicket(singleTicket).subscribe((ticket) => {
+      expect(ticket).toEqual(singleTicket);
       expect(RequestService.prototype.getAuthHeaders).toHaveBeenCalled();
     });
   });
 
-  it('should update post', () => {
-    returnsResponse(singlePost, RequestMethod.Post, `/post/${singlePost._id}`, JSON.stringify(singlePost), {
+  it('should update ticket', () => {
+    returnsResponse(singleTicket, RequestMethod.Ticket, `/tickets/${singleTicket._id}`, JSON.stringify(singleTicket), {
       'Content-Type': 'application/json', Authorization: 'Bearer secretToken'
     });
 
-    service.updatePost(singlePost).subscribe((post) => {
-      expect(post).toEqual(singlePost);
+    service.updateTicket(singleTicket).subscribe((ticket) => {
+      expect(ticket).toEqual(singleTicket);
       expect(RequestService.prototype.getAuthHeaders).toHaveBeenCalled();
     });
   });

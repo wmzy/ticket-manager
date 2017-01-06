@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import template from './login.template.html';
 import { UserService } from '../../services/user/user.service';
-import { validatorFactory } from '../../../posts/validator';
+import { validatorFactory } from '../../../tickets/validator';
 
 @Component({
   selector: 'login',

@@ -8,7 +8,7 @@ module.exports = function() {
       watch: ['server'],
       ignore: ['node_modules/**'],
       execMap: {
-        js: 'node  --harmony'
+        js: 'node --harmony'
       },
       ext: 'js html',
       env: {

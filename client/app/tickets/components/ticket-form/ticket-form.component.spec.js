@@ -2,9 +2,9 @@ import { Component, EventEmitter } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { PostFormComponent } from './post-form.component';
+import { TicketFormComponent } from './ticket-form.component';
 
-let examplePost = {
+let exampleTicket = {
   _id: undefined,
   name: 'Sonic',
   website: 'http://www.sonic.com',
@@ -12,57 +12,57 @@ let examplePost = {
 };
 
 @Component({
-  template: '<post-form [post]="actualPost" (saved)="onSave($event)"></post-form>'
+  template: '<ticket-form [ticket]="actualTicket" (saved)="onSave($event)"></ticket-form>'
 })
 class TestComponent {
-  actualPost = examplePost;
+  actualTicket = exampleTicket;
 
   constructor() {
     this.saveFinished = new EventEmitter();
   }
 
-  onSave(post) {
-    this.saveCall = post;
+  onSave(ticket) {
+    this.saveCall = ticket;
     this.saveFinished.emit();
   }
 }
 
 describe('FormComponent', () => {
   function assertInputFields(element) {
-    expect(element.querySelector('#post-name').value).toBe(examplePost.name);
-    expect(element.querySelector('#post-website').value).toBe(examplePost.website);
-    expect(element.querySelector('#post-description').value).toBe(examplePost.description);
+    expect(element.querySelector('#ticket-name').value).toBe(exampleTicket.name);
+    expect(element.querySelector('#ticket-website').value).toBe(exampleTicket.website);
+    expect(element.querySelector('#ticket-description').value).toBe(exampleTicket.description);
   }
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PostFormComponent, TestComponent],
+      declarations: [TicketFormComponent, TestComponent],
       imports: [FormsModule, ReactiveFormsModule]
     });
   });
 
   describe('as a Component', () => {
     it('should create form group in constructor and bind it to input elements', () => {
-      let fixture = TestBed.createComponent(PostFormComponent);
+      let fixture = TestBed.createComponent(TicketFormComponent);
       let component = fixture.componentInstance;
       let element = fixture.nativeElement;
 
-      component.postForm.controls['name'].setValue('Sonic');
-      component.postForm.controls['website'].setValue('http://www.sonic.com');
-      component.postForm.controls['description'].setValue('Short bio');
+      component.ticketForm.controls['name'].setValue('Sonic');
+      component.ticketForm.controls['website'].setValue('http://www.sonic.com');
+      component.ticketForm.controls['description'].setValue('Short bio');
       fixture.detectChanges();
 
       assertInputFields(element);
     });
 
     it('should update input fields based on input changes', () => {
-      let fixture = TestBed.createComponent(PostFormComponent);
+      let fixture = TestBed.createComponent(TicketFormComponent);
       let component = fixture.componentInstance;
       let element = fixture.nativeElement;
 
       component.ngOnChanges({
-        post: {
-          currentValue: examplePost
+        ticket: {
+          currentValue: exampleTicket
         }
       });
       fixture.detectChanges();
@@ -71,30 +71,30 @@ describe('FormComponent', () => {
     });
 
     it('should notify when form is submitted', () => {
-      let fixture = TestBed.createComponent(PostFormComponent);
+      let fixture = TestBed.createComponent(TicketFormComponent);
       let component = fixture.componentInstance;
 
       component.saved.subscribe((value) => {
-        expect(value).toBe(examplePost);
+        expect(value).toBe(exampleTicket);
       });
 
-      component.onSubmit(examplePost);
+      component.onSubmit(exampleTicket);
     });
 
     it('should notify when submit button is clicked', () => {
-      let fixture = TestBed.createComponent(PostFormComponent);
+      let fixture = TestBed.createComponent(TicketFormComponent);
       let component = fixture.componentInstance;
       let element = fixture.nativeElement;
 
       component.ngOnChanges({
-        post: {
-          currentValue: examplePost
+        ticket: {
+          currentValue: exampleTicket
         }
       });
       fixture.detectChanges();
 
       component.saved.subscribe((value) => {
-        expect(value).toEqual(examplePost);
+        expect(value).toEqual(exampleTicket);
       });
 
       element.querySelector('button[type=submit]').click();
@@ -102,7 +102,7 @@ describe('FormComponent', () => {
   });
 
   describe('as a Directive', () => {
-    it('should accept post input from parent component and display it in input fields', () => {
+    it('should accept ticket input from parent component and display it in input fields', () => {
       let fixture = TestBed.createComponent(TestComponent);
       let element = fixture.nativeElement;
 
@@ -119,9 +119,9 @@ describe('FormComponent', () => {
       fixture.detectChanges();
 
       component.saveFinished.subscribe(() => {
-        let value = component.actualPost;
+        let value = component.actualTicket;
         delete value._id;
-        expect(value).toEqual(examplePost);
+        expect(value).toEqual(exampleTicket);
       });
 
       element.querySelector('button[type=submit]').click();

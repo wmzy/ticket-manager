@@ -1,0 +1,9 @@
+<div class="row">
+    <div class="col-sm-12">
+        <h1>Tickets <a [routerLink]="['new']" *ngIf="userService.getLoggedIn() | async" class="btn btn-primary pull-right">New ticket</a></h1>
+
+        <div class="list-group">
+            <ticket-list-item *ngFor="let ticket of getRemoteTickets() | async" [ticket]="ticket"></ticket-list-item>
+        </div>
+    </div>
+</div>
