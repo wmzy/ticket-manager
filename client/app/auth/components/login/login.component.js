@@ -17,7 +17,7 @@ export class LoginComponent {
     this._router = router;
 
     this.loginForm = builder.group({
-      email: ['', [Validators.required, validatorFactory('email')]],
+      symbol: ['', [Validators.required, validatorFactory('email')]],
       password: ['', Validators.required]
     });
   }

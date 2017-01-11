@@ -14,7 +14,7 @@ export class TicketService {
   }
 
   refreshTickets() {
-    let ticketsResponse = this._http.get('/tickets')
+    let ticketsResponse = this._http.get('/api/v1/tickets')
       .map(res => res.json());
 
     ticketsResponse.subscribe(
@@ -31,18 +31,18 @@ export class TicketService {
 
   addTicket(ticket) {
     return this._http
-      .post('/tickets', JSON.stringify(ticket), { headers: this._request.getAuthHeaders() })
+      .post('/api/v1/tickets', JSON.stringify(ticket), { headers: this._request.getAuthHeaders() })
       .map(res => res.json());
   }
 
   getTicket(id) {
-    return this._http.get(`/tickets/${id}`)
+    return this._http.get(`/api/v1/tickets/${id}`)
       .map(res => res.json());
   }
 
   updateTicket(ticket) {
     return this._http
-      .put(`/tickets/${ticket._id}`, JSON.stringify(ticket), { headers: this._request.getAuthHeaders() })
+      .put(`/api/v1/tickets/${ticket._id}`, JSON.stringify(ticket), { headers: this._request.getAuthHeaders() })
       .map(res => res.json());
   }
 }

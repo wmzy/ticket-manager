@@ -22,7 +22,7 @@ export class UserService {
 
   signUp(info) {
     return this._http
-      .post('/sign-up', JSON.stringify(info), {headers: this._request.getJsonHeaders()})
+      .post('/api/v1/sign-up', JSON.stringify(info), {headers: this._request.getJsonHeaders()})
       .map(res => res.json())
       .map(({authToken}) => {
         this._storage.setAuthToken(authToken);
@@ -32,7 +32,7 @@ export class UserService {
 
   login(credentials) {
     return this._http
-      .put('/login', JSON.stringify(credentials), {headers: this._request.getJsonHeaders()})
+      .put('/api/v1/login', JSON.stringify(credentials), {headers: this._request.getJsonHeaders()})
       .map(res => res.json())
       .map(({authToken}) => {
         this._storage.setAuthToken(authToken);

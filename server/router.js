@@ -1,5 +1,5 @@
 'use strict';
-const router = require('koa-router')();
+const Router = require('koa-router');
 const jwt = require('jsonwebtoken');
 const config = require('./config');
 const jwtMiddleware = require('koa-jwt')({secret: config.jwtSecret});
@@ -7,12 +7,20 @@ const jwtMiddleware = require('koa-jwt')({secret: config.jwtSecret});
 const ticketController = require('./controllers/ticket');
 const authController = require('./controllers/auth');
 
-router.get('/tickets', ticketController.list);
-router.get('/tickets/:id', ticketController.getById);
-router.put('/tickets/:id', jwtMiddleware, ticketController.save);
-router.post('/tickets', jwtMiddleware, ticketController.create);
+const router = new Router({prefix: '/api/v1'});
 
-router.put('/login', authController.login);
-router.post('/sign-up', authController.singUp);
+const ticketRouter = new Router({prefix: '/tickets'})
+  .get('/', ticketController.list)
+  .get('/:id', ticketController.getById)
+  .put('/:id', jwtMiddleware, ticketController.save)
+  .post('/', jwtMiddleware, ticketController.create);
+
+router.use(ticketRouter.routes());
+
+const authRouter = new Router()
+  .put('/login', authController.login)
+  .post('/sign-up', authController.singUp);
+
+router.use(authRouter.routes());
 
 module.exports = router;

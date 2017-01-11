@@ -6,13 +6,13 @@
             <p>(Email: admin@gmail.com, password: angular2)</p>
 
             <div class="form-group">
-                <label for="login-email">Email</label>
-                <input type="text" formControlName="email" class="form-control" id="login-email">
+                <label for="login-symbol">Email</label>
+                <input type="text" formControlName="symbol" class="form-control" id="login-symbol">
             </div>
-            <div *ngIf="loginForm.controls.email.hasError('required') && loginForm.controls.email.touched" class="alert alert-danger">
+            <div *ngIf="loginForm.controls.symbol.hasError('required') && loginForm.controls.symbol.touched" class="alert alert-danger">
                 Email is required
             </div>
-            <div *ngIf="loginForm.controls.email.hasError('email') && loginForm.controls.email.touched" class="alert alert-danger">
+            <div *ngIf="loginForm.controls.symbol.hasError('email') && loginForm.controls.symbol.touched" class="alert alert-danger">
                 Email is invalid
             </div>
 
