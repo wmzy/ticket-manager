@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {FormBuilder, Validators} from '@angular/forms';
 
 import template from './ticket-form.template.html';
-import { validatorFactory } from '../../validator';
+import {validatorFactory} from '../../validator';
 
 @Component({
   selector: 'ticket-form',
@@ -17,19 +17,19 @@ export class TicketFormComponent {
     this._builder = builder;
 
     this.ticketForm = this._builder.group({
-      _id: [''],
-      name: ['', Validators.required],
-      website: ['', [Validators.required, validatorFactory('url')]],
-      description: ['']
+      id: [''],
+      title: ['', Validators.required],
+      assignee: [''],
+      priority: [''],
+      content: [''],
+      attachments: ['']
     });
   }
 
   ngOnChanges(change) {
     if (change.ticket && change.ticket.currentValue) {
-      this.ticketForm.controls['_id'].setValue(change.ticket.currentValue._id);
-      this.ticketForm.controls['name'].setValue(change.ticket.currentValue.name);
-      this.ticketForm.controls['website'].setValue(change.ticket.currentValue.website);
-      this.ticketForm.controls['description'].setValue(change.ticket.currentValue.description);
+      ['id', 'title', 'assignee', 'priority', 'content', 'attachments']
+        .forEach(k => this.ticketForm.controls[k].setValue(change.ticket.currentValue[k]));
     }
   }
 
