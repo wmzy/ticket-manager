@@ -23,9 +23,7 @@ if (ENVIRONMENT === 'production') {
   imports: [
     HttpModule, BrowserModule, FormsModule, ReactiveFormsModule,
     TranslateModule.forRoot(),
-    RouterModule.forRoot(routes, {
-      useHash: true
-    })
+    RouterModule.forRoot(routes)
   ],
   providers: [
     CORE_PROVIDERS, AUTH_PROVIDERS, TICKETS_PROVIDERS,
