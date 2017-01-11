@@ -10,7 +10,7 @@ import {validatorFactory} from '../../../tickets/validator';
   selector: 'sign-up',
   template: template
 })
-export class signUpComponent {
+export class SignUpComponent {
 
   constructor(userService: UserService, builder: FormBuilder, router: Router) {
     this._userService = userService;
@@ -21,12 +21,14 @@ export class signUpComponent {
       nick: ['', [Validators.required]],
       mobile: ['', []],
       email: ['', [Validators.required, validatorFactory('email')]],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      conformPassword: ['', Validators.required]
     });
   }
 
   onSubmit(credentials) {
     this._userService.signUp(credentials).subscribe((result) => {
+      console.log('ssss')
       this._router.navigate(['']);
     });
   }

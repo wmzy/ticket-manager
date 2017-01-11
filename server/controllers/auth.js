@@ -12,16 +12,15 @@ exports.login = async function (ctx) {
   }
 
   ctx.body = {
-    authToken: jwt.sign(_.pick(user, username), config.jwtSecret)
+    authToken: jwt.sign(user.id, config.jwtSecret)
   };
 };
 
-exports.singUp = function (ctx) {
-  // const {confirmPassword, ...body} = ctx.request.body;
+exports.singUp = async function (ctx) {
   const body = ctx.request.body;
-  if (body.confirmPassword !== body.password) return ctx.throw(400);
-
-  delete body.confirmPassword;
-  return userService.create(body);
+  const user = await userService.create(body);
+  ctx.body = {
+    authToken: jwt.sign(user.id, config.jwtSecret)
+  };
 };
 

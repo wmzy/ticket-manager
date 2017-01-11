@@ -31,8 +31,7 @@ const UserSchema = Schema({
     required: true
   },
   salt: {
-    type: String,
-    required: true
+    type: String
   }
 });
 
@@ -55,7 +54,7 @@ UserSchema.pre('save', function(next) {
  * Create instance method for hashing a password
  */
 UserSchema.methods.hashPassword = function(password) {
-  return crypto.pbkdf2Sync(password, new Buffer(this.salt, 'base64'), 10000, 64).toString('base64');
+  return crypto.pbkdf2Sync(password, new Buffer(this.salt, 'base64'), 10000, 64, 'sha256').toString('base64');
 };
 
 /**
