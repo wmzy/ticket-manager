@@ -20,7 +20,7 @@ export class TicketFormComponent {
       id: [''],
       title: ['', Validators.required],
       assignee: [''],
-      priority: [''],
+      priority: ['medium'],
       content: [''],
       attachments: ['']
     });

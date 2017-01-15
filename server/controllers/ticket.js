@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const ticketService = require('../services/ticket');
 
 exports.list = async function (ctx) {
@@ -10,7 +11,10 @@ exports.getById = async function (ctx) {
 };
 
 exports.create = async function (ctx) {
-  ctx.body = await ticketService.create(ctx.request.body);
+  const doc = _.omit(ctx.request.body, 'id', 'attachments', 'assignee');
+  doc.creator = ctx.state.user;
+  doc.state = 'open';
+  ctx.body = await ticketService.create(doc);
   if (!ctx.body) ctx.throw(404);
 };
 
