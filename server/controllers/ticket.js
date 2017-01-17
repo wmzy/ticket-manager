@@ -12,7 +12,6 @@ exports.list = async function (ctx) {
 
 exports.getById = async function (ctx) {
   ctx.body = await ticketService.getById(ctx.params.id);
-  
   if (!ctx.body) ctx.throw(404);
 };
 

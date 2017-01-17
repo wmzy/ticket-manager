@@ -6,7 +6,7 @@ module.exports = function() {
     return nodemon({
       script: 'server/index.js',
       watch: ['server'],
-      ignore: ['node_modules/**'],
+      ignore: ['node_modules/**', '**/*.*___jb_tmp___'],
       execMap: {
         js: 'node --harmony'
       },
