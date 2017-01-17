@@ -1,8 +1,12 @@
 const _ = require('lodash');
 const ticketService = require('../services/ticket');
+const acl = require('../acl');
 
 exports.list = async function (ctx) {
-  ctx.body = await ticketService.list();
+  if (acl.hasRole(ctx.state.user, 'admin'))
+    return ctx.body = await ticketService.list();
+
+  return ctx.body = await ticketService.listByCreatorId(ctx.state.user);
 };
 
 exports.getById = async function (ctx) {
