@@ -2,7 +2,7 @@
 const Router = require('koa-router');
 const jwt = require('jsonwebtoken');
 const config = require('./config');
-const jwtMiddleware = require('koa-jwt')({secret: config.jwtSecret});
+const jwtMiddleware = require('koa-jwt')({secret: config.jwtSecret, key: 'userId'});
 
 const ticketController = require('./controllers/ticket');
 const authController = require('./controllers/auth');

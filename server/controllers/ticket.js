@@ -3,14 +3,16 @@ const ticketService = require('../services/ticket');
 const acl = require('../acl');
 
 exports.list = async function (ctx) {
-  if (acl.hasRole(ctx.state.user, 'admin'))
-    return ctx.body = await ticketService.list();
+  const userId = ctx.state.userId;
 
-  return ctx.body = await ticketService.listByCreatorId(ctx.state.user);
+  if (acl.hasRole(userId, 'admin')) return void(ctx.body = await ticketService.list());
+
+  ctx.body = await ticketService.listByCreatorId(userId);
 };
 
 exports.getById = async function (ctx) {
   ctx.body = await ticketService.getById(ctx.params.id);
+  
   if (!ctx.body) ctx.throw(404);
 };
 
