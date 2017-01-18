@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core'; // eslint-disable-line no-unused-vars
+import { Component, Inject } from '@angular/core';
 import { TranslateService } from 'ng2-translate';
 import { translation } from '../../../i18n/en';
 

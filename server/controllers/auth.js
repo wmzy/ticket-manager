@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const config = require('../config');
 const userService = require('../services/user');
+const authService = require('../services/auth');
 
 exports.login = async function (ctx) {
   const {symbol, password} = ctx.request.body;
@@ -24,3 +25,6 @@ exports.singUp = async function (ctx) {
   };
 };
 
+exports.resourcePermissions = function (ctx) {
+  return authService.getResourcePermissions(ctx.state.userId);
+};

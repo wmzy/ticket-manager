@@ -18,6 +18,7 @@ const ticketRouter = new Router({prefix: '/tickets'})
 router.use(ticketRouter.routes());
 
 const authRouter = new Router()
+  .get('/resource-permissions', authController.resourcePermissions)
   .put('/login', authController.login)
   .post('/sign-up', authController.singUp);
 

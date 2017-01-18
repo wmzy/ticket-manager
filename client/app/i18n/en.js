@@ -1,10 +1,12 @@
 export const translation = {
-  pageTitle: 'Angular 2 App',
+  pageTitle: 'Ticket Manage',
 
   menu: {
     tickets: 'Tickets',
+    users: 'Users',
     about: 'About',
     login: 'Login',
+    join: 'Sign Up',
     logout: 'Logout'
   }
 };
