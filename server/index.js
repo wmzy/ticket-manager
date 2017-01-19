@@ -8,7 +8,7 @@ mongoose.Promise = Promise;
 
 console.log('begin load models');
 const rg = requireGlob('server/models/**/*.model.js')
-  .then(console.log.bind(console, 'end load models'));
+  .then(() => console.log('end load models'));
 
 mongoose.connect('mongodb://localhost/ticket-manager', {promiseLibrary: Promise});
 const db = mongoose.connection;
