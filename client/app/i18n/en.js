@@ -1,5 +1,5 @@
 export const translation = {
-  pageTitle: 'Ticket Manage',
+  pageTitle: 'Ticket Manager',
 
   menu: {
     tickets: 'Tickets',
