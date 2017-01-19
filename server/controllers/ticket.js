@@ -5,9 +5,7 @@ const acl = require('../acl');
 exports.list = async function (ctx) {
   const userId = ctx.state.userId;
 
-  if (!userId) return void (ctx.body = []);
-
-  if (acl.hasRole(userId, 'admin')) return void(ctx.body = await ticketService.list());
+  if (await acl.hasRole(userId, 'admin')) return void(ctx.body = await ticketService.list());
 
   ctx.body = await ticketService.listByCreatorId(userId);
 };
@@ -19,7 +17,7 @@ exports.getById = async function (ctx) {
 
 exports.create = async function (ctx) {
   const doc = _.omit(ctx.request.body, 'id', 'attachments', 'assignee');
-  doc.creator = ctx.state.user;
+  doc.creator = ctx.state.userId;
   doc.state = 'open';
   ctx.body = await ticketService.create(doc);
   if (!ctx.body) ctx.throw(404);

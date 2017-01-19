@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const mongoose = require('mongoose');
+const ObjectId = mongoose.Types.ObjectId;
 
 const Ticket = mongoose.model('Ticket');
 
@@ -10,7 +11,7 @@ const list = exports.list = function (query) {
 };
 
 exports.listByCreatorId = async function (creatorId) {
-  return list({creator: creatorId});
+  return await list({creator: creatorId});
 };
 
 exports.getById = async function (id) {
