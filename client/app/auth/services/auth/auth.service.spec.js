@@ -27,8 +27,8 @@ describe('AuthService', () => {
   });
 
   beforeEach(inject([AuthService, StorageService, FakeBackend],
-    (userService, storageService, fakeBackend) => {
-      subject = userService;
+    (authService, storageService, fakeBackend) => {
+      subject = authService;
       storage = storageService;
       backend = fakeBackend;
 
@@ -37,7 +37,7 @@ describe('AuthService', () => {
     }
   ));
 
-  it('should log in user when request was successful', () => {
+  it('should log in auth when request was successful', () => {
     successfulHttpLogin();
 
     subject.login(credentials).subscribe((result) => {
@@ -48,7 +48,7 @@ describe('AuthService', () => {
     backend.flush();
   });
 
-  it('should not log in user when request was unsuccessful', () => {
+  it('should not log in auth when request was unsuccessful', () => {
     backend.expectPOST('/login', JSON.stringify(credentials))
       .respond(200, JSON.stringify({ success: false }));
 
@@ -80,7 +80,7 @@ describe('AuthService', () => {
     });
   });
 
-  it('should log out user', () => {
+  it('should log out auth', () => {
     subject.logout();
 
     expect(storage.removeAuthToken).toHaveBeenCalled();

@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs/Observable';
-import { UserService } from './services/user/user.service';
+import { AuthService } from './services/auth/auth.service';
 
-class UserServiceMock {
+class AuthServiceMock {
   login() {
     return Observable.of(true);
   }
@@ -18,10 +18,10 @@ class UserServiceMock {
 }
 
 const AUTH_TESTING_PROVIDERS = [
-  { provide: UserService, useClass: UserServiceMock }
+  { provide: AuthService, useClass: AuthServiceMock }
 ];
 
 export {
-  UserServiceMock,
+  AuthServiceMock,
   AUTH_TESTING_PROVIDERS
 };

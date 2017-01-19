@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import template from './login.template.html';
-import { UserService } from '../../services/user/user.service';
+import { AuthService } from '../../services/auth/auth.service';
 import { validatorFactory } from '../../../tickets/validator';
 
 @Component({
@@ -12,8 +12,8 @@ import { validatorFactory } from '../../../tickets/validator';
 })
 export class LoginComponent {
 
-  constructor(userService: UserService, builder: FormBuilder, router: Router) {
-    this._userService = userService;
+  constructor(authService: AuthService, builder: FormBuilder, router: Router) {
+    this._authService = authService;
     this._router = router;
 
     this.loginForm = builder.group({
@@ -23,7 +23,7 @@ export class LoginComponent {
   }
 
   onSubmit(credentials) {
-    this._userService.login(credentials).subscribe((result) => {
+    this._authService.login(credentials).subscribe((result) => {
       if (result) {
         this._router.navigate(['']);
       }

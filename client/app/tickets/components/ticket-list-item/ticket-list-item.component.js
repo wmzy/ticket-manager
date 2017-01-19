@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
 import template from './ticket-list-item.template.html';
-import { UserService } from '../../../auth';
+import { AuthService } from '../../../auth';
 
 @Component({
   selector: 'ticket-list-item',
@@ -11,7 +11,7 @@ import { UserService } from '../../../auth';
 export class TicketListItemComponent {
   @Input() ticket;
 
-  constructor(userService: UserService) {
+  constructor(userService: AuthService) {
     this.userService = userService;
   }
 

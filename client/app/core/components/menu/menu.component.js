@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import template from './menu.template.html';
-import { UserService } from '../../../auth';
+import { AuthService } from '../../../auth';
 
 @Component({
   selector: 'top-menu',
@@ -10,7 +10,7 @@ import { UserService } from '../../../auth';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MenuComponent {
-  constructor(userService: UserService, router: Router) {
+  constructor(userService: AuthService, router: Router) {
     this.userService = userService;
     this._router = router;
   }

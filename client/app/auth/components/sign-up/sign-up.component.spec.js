@@ -4,11 +4,11 @@ import { Observable } from 'rxjs/Observable';
 
 import { LoginComponent } from './sign-up.component';
 import { CORE_TESTING_PROVIDERS, RouterMock } from '../../../core/testing';
-import { AUTH_TESTING_PROVIDERS, UserServiceMock } from '../../testing';
+import { AUTH_TESTING_PROVIDERS, AuthServiceMock } from '../../testing';
 
 function stubLoginMethod(result) {
   let loginResult = Observable.of(result);
-  spyOn(UserServiceMock.prototype, 'login').and.returnValue(loginResult);
+  spyOn(AuthServiceMock.prototype, 'login').and.returnValue(loginResult);
 }
 
 describe('LoginComponent', () => {
@@ -39,7 +39,7 @@ describe('LoginComponent', () => {
 
     subject.onSubmit(credentials);
 
-    expect(UserServiceMock.prototype.login).toHaveBeenCalledWith(credentials);
+    expect(AuthServiceMock.prototype.login).toHaveBeenCalledWith(credentials);
   });
 
   it('should navigate to list page on successful login', () => {
@@ -70,7 +70,7 @@ describe('LoginComponent', () => {
     subjectElement.querySelector('button[type=submit]').click();
 
     setTimeout(() => {
-      expect(UserServiceMock.prototype.login).toHaveBeenCalledWith(credentials);
+      expect(AuthServiceMock.prototype.login).toHaveBeenCalledWith(credentials);
       done();
     }, 0);
   });

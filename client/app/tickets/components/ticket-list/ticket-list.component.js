@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import template from './ticket-list.template.html';
-import { UserService } from '../../../auth';
+import { AuthService } from '../../../auth';
 import { TicketService } from '../../services/ticket/ticket.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { TicketService } from '../../services/ticket/ticket.service';
   changeDetection: ChangeDetectionStrategy.Detached
 })
 export class TicketListComponent {
-  constructor(ticketService: TicketService, userService: UserService) {
+  constructor(ticketService: TicketService, userService: AuthService) {
     this._ticketService = ticketService;
     this.userService = userService;
   }

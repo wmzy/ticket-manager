@@ -3,7 +3,7 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 
 import template from './sign-up.template.html';
-import {UserService} from '../../services/user/user.service';
+import {AuthService} from '../../services/auth/auth.service';
 import {validatorFactory} from '../../../tickets/validator';
 
 @Component({
@@ -12,12 +12,12 @@ import {validatorFactory} from '../../../tickets/validator';
 })
 export class SignUpComponent {
 
-  constructor(userService: UserService, builder: FormBuilder, router: Router) {
-    this._userService = userService;
+  constructor(authService: AuthService, builder: FormBuilder, router: Router) {
+    this._authService = authService;
     this._router = router;
 
     this.signUpForm = builder.group({
-      username: ['', [Validators.required]],
+      authname: ['', [Validators.required]],
       nick: ['', [Validators.required]],
       mobile: ['', []],
       email: ['', [Validators.required, validatorFactory('email')]],
@@ -27,8 +27,7 @@ export class SignUpComponent {
   }
 
   onSubmit(credentials) {
-    this._userService.signUp(credentials).subscribe((result) => {
-      console.log('ssss')
+    this._authService.signUp(credentials).subscribe((result) => {
       this._router.navigate(['']);
     });
   }

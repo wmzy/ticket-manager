@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 
-import { UserService } from '../../auth';
+import { AuthService } from '../../auth';
 
 @Injectable()
 export class LoggedOutGuard {
-  constructor(user: UserService) {
-    this._user = user;
+  constructor(auth: AuthService) {
+    this._auth = auth;
   }
 
   canActivate() {
-    return !this._user.isLoggedIn();
+    return !this._auth.isLoggedIn();
   }
 }

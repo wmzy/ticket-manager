@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 
-import { UserService } from '../../auth';
+import { AuthService } from '../../auth';
 
 @Injectable()
 export class LoggedInGuard {
-  constructor(user: UserService) {
+  constructor(user: AuthService) {
     this._user = user;
   }
 
