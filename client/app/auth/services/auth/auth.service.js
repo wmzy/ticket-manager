@@ -6,7 +6,7 @@ import {StorageService} from '../storage/storage.service';
 import {RequestService} from '../request/request.service';
 
 @Injectable()
-export class UserService {
+export class AuthService {
 
   _loggedIn = new BehaviorSubject(false);
 

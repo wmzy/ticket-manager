@@ -1,11 +1,11 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { UserService } from './user.service';
+import { AuthService } from './auth.service';
 import { FakeBackend, FAKE_BACKEND_PROVIDERS } from '../../../helpers/fake-backend';
 import { StorageService } from '../storage/storage.service';
 import { RequestService } from '../request/request.service';
 
-describe('UserService', () => {
+describe('AuthService', () => {
   let subject;
   let backend;
   let storage;
@@ -18,7 +18,7 @@ describe('UserService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        UserService,
+        AuthService,
         StorageService,
         RequestService,
         FAKE_BACKEND_PROVIDERS
@@ -26,7 +26,7 @@ describe('UserService', () => {
     });
   });
 
-  beforeEach(inject([UserService, StorageService, FakeBackend],
+  beforeEach(inject([AuthService, StorageService, FakeBackend],
     (userService, storageService, fakeBackend) => {
       subject = userService;
       storage = storageService;
