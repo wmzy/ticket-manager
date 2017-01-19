@@ -28,3 +28,7 @@ exports.getById = function (id) {
 exports.create = function (doc) {
   return User.create(doc);
 };
+
+exports.remove = function (userId) {
+  return User.findByIdAndUpdate(userId, {state: 'removed'});
+};

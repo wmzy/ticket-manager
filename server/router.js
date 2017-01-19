@@ -5,6 +5,7 @@ const config = require('./config');
 const jwtMiddleware = require('koa-jwt')({secret: config.jwtSecret, key: 'userId'});
 
 const ticketController = require('./controllers/ticket');
+const userController = require('./controllers/user');
 const authController = require('./controllers/auth');
 
 const router = new Router({prefix: '/api/v1'});
@@ -17,6 +18,13 @@ const ticketRouter = new Router({prefix: '/tickets'})
   .post('/', ticketController.create);
 
 router.use(ticketRouter.routes());
+
+const userRouter = new Router({prefix: '/users'})
+  .use(jwtMiddleware)
+  .get('/', userController.list)
+  .delete('/:id', userController.remove);
+
+router.use(userRouter.routes());
 
 const authRouter = new Router()
   .get('/resource-permissions', authController.resourcePermissions)

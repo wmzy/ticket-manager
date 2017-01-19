@@ -26,6 +26,10 @@ const UserSchema = Schema({
     unique: true,
     trim: true
   },
+  state: {
+    type: String,
+    enum: ['', 'removed']
+  },
   password: {
     type: String,
     required: true
