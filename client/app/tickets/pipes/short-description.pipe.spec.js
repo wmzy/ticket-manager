@@ -10,7 +10,7 @@ let expectedShortenedText =
 let shortDescription = 'Lorem ipsum.';
 
 @Component({
-  template: '<div id="ticket-description">{{ actualDescription | short_description }}</div>'
+  template: '<div id="user-description">{{ actualDescription | short_description }}</div>'
 })
 class TestComponent {
   actualDescription = longDescription;
@@ -47,7 +47,7 @@ describe('ShortDescriptionPipe', () => {
 
       fixture.detectChanges();
 
-      expect(element.querySelector('#ticket-description').innerText).toBe(expectedShortenedText);
+      expect(element.querySelector('#user-description').innerText).toBe(expectedShortenedText);
     });
   });
 });

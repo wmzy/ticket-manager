@@ -85,7 +85,7 @@ describe('TicketService', () => {
     });
   });
 
-  it('should return ticket', () => {
+  it('should return user', () => {
     returnsResponse(singleTicket, RequestMethod.Get, `/tickets/${singleTicket._id}`);
 
     service.getTicket(singleTicket._id).subscribe((ticket) => {
@@ -93,8 +93,8 @@ describe('TicketService', () => {
     });
   });
 
-  it('should add ticket', () => {
-    returnsResponse(singleTicket, RequestMethod.Ticket, '/ticket', JSON.stringify(singleTicket), {
+  it('should add user', () => {
+    returnsResponse(singleTicket, RequestMethod.Ticket, '/user', JSON.stringify(singleTicket), {
       'Content-Type': 'application/json', Authorization: 'Bearer secretToken'
     });
 
@@ -104,7 +104,7 @@ describe('TicketService', () => {
     });
   });
 
-  it('should update ticket', () => {
+  it('should update user', () => {
     returnsResponse(singleTicket, RequestMethod.Ticket, `/tickets/${singleTicket._id}`, JSON.stringify(singleTicket), {
       'Content-Type': 'application/json', Authorization: 'Bearer secretToken'
     });

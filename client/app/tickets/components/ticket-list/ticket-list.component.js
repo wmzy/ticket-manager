@@ -10,9 +10,9 @@ import { TicketService } from '../../services/ticket/ticket.service';
   changeDetection: ChangeDetectionStrategy.Detached
 })
 export class TicketListComponent {
-  constructor(ticketService: TicketService, userService: AuthService) {
+  constructor(ticketService: TicketService, authService: AuthService) {
     this._ticketService = ticketService;
-    this.userService = userService;
+    this.authService = authService;
   }
 
   ngOnInit() {

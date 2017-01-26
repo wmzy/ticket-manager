@@ -21,6 +21,10 @@ exports.getBySymbol = function (symbol) {
   return exports.getByUsername(symbol);
 };
 
+exports.list = function (query) {
+  return User.find(query);
+};
+
 exports.getById = function (id) {
   return User.findById(id);
 };

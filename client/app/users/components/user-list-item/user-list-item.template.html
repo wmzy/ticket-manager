@@ -1,0 +1,6 @@
+<div class="list-group-item user-item" [id]="'user-' + user._id">
+  <a href="#" *ngIf="getLoggedIn() | async" class="btn btn-danger pull-right">删除</a>
+  <a href="#">
+    <h4 class="list-group-item-heading">{{ user.username }}</h4>
+  </a>
+</div>

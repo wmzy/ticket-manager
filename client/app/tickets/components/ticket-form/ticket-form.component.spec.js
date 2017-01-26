@@ -12,7 +12,7 @@ let exampleTicket = {
 };
 
 @Component({
-  template: '<ticket-form [ticket]="actualTicket" (saved)="onSave($event)"></ticket-form>'
+  template: '<user-form [user]="actualTicket" (saved)="onSave($event)"></user-form>'
 })
 class TestComponent {
   actualTicket = exampleTicket;
@@ -29,9 +29,9 @@ class TestComponent {
 
 describe('FormComponent', () => {
   function assertInputFields(element) {
-    expect(element.querySelector('#ticket-name').value).toBe(exampleTicket.name);
-    expect(element.querySelector('#ticket-website').value).toBe(exampleTicket.website);
-    expect(element.querySelector('#ticket-description').value).toBe(exampleTicket.description);
+    expect(element.querySelector('#user-name').value).toBe(exampleTicket.name);
+    expect(element.querySelector('#user-website').value).toBe(exampleTicket.website);
+    expect(element.querySelector('#user-description').value).toBe(exampleTicket.description);
   }
 
   beforeEach(() => {
@@ -102,7 +102,7 @@ describe('FormComponent', () => {
   });
 
   describe('as a Directive', () => {
-    it('should accept ticket input from parent component and display it in input fields', () => {
+    it('should accept user input from parent component and display it in input fields', () => {
       let fixture = TestBed.createComponent(TestComponent);
       let element = fixture.nativeElement;
 

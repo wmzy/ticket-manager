@@ -11,11 +11,11 @@ import { AuthService } from '../../../auth';
 export class TicketListItemComponent {
   @Input() ticket;
 
-  constructor(userService: AuthService) {
-    this.userService = userService;
+  constructor(authService: AuthService) {
+    this.authService = authService;
   }
 
   getLoggedIn() {
-    return this.userService.getLoggedIn();
+    return this.authService.getLoggedIn();
   }
 }
