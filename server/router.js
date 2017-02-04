@@ -22,6 +22,7 @@ router.use(ticketRouter.routes());
 const userRouter = new Router({prefix: '/users'})
   .use(jwtMiddleware)
   .get('/', userController.list)
+  .put('/:id/role', userController.setRole)
   .delete('/:id', userController.remove);
 
 router.use(userRouter.routes());

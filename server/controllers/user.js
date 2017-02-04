@@ -10,7 +10,7 @@ exports.list = async function (ctx) {
   if (!await acl.isAllowed(userId, 'users', 'list'))
     return ctx.throw(403);
 
-  ctx.body = await userService.list();
+  ctx.body = await userService.listWithRoles();
 };
 
 exports.remove = async function (ctx) {
@@ -19,6 +19,16 @@ exports.remove = async function (ctx) {
   if (!await acl.isAllowed(userId, 'users', 'list')) return ctx.throw(403);
 
   await userService.remove(ctx.params.id);
+  ctx.body = null;
+};
+
+exports.setRole = async function (ctx) {
+  const userId = ctx.state.userId;
+  console.log('bbb')
+
+  if (!await acl.isAllowed(userId, 'users', 'edit')) return ctx.throw(403);
+
+  await acl.addUserRoles(ctx.params.id, ctx.body);
   ctx.body = null;
 };
 

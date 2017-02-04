@@ -1,8 +1,8 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import {Component, ChangeDetectionStrategy} from '@angular/core';
 
 import template from './user-list.template.html';
-import { AuthService } from '../../../auth';
-import { UserService } from '../../services/user/user.service';
+import {AuthService} from '../../../auth';
+import {UserService} from '../../services/user/user.service';
 
 @Component({
   selector: 'user-list',
