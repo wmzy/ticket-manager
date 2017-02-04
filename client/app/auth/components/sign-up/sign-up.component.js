@@ -17,7 +17,7 @@ export class SignUpComponent {
     this._router = router;
 
     this.signUpForm = builder.group({
-      authname: ['', [Validators.required]],
+      username: ['', [Validators.required]],
       nick: ['', [Validators.required]],
       mobile: ['', []],
       email: ['', [Validators.required, validatorFactory('email')]],
