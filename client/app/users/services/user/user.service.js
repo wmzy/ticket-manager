@@ -48,7 +48,7 @@ export class UserService {
 
   setRole(id, role) {
     return this._http
-      .put(`/api/v1/users/${id}/role`, JSON.stringify(role), {headers: this._request.getAuthHeaders()})
+      .put(`/api/v1/users/${id}/role`, JSON.stringify({role: role}), {headers: this._request.getAuthHeaders()})
       .map(res => res.json());
   }
 }

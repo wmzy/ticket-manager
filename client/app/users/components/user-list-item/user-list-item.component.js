@@ -22,7 +22,11 @@ export class UserListItemComponent {
   }
 
   setRole(role) {
-    this.userService.setRole(this.user._id, role);
-    this.userService.refreshUsers();
+    this.userService.setRole(this.user._id, role).subscribe(
+      () => {
+        this.userService.refreshUsers();
+      },
+      (error) => console.error(error)
+    );
   }
 }

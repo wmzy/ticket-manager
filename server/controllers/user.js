@@ -24,11 +24,11 @@ exports.remove = async function (ctx) {
 
 exports.setRole = async function (ctx) {
   const userId = ctx.state.userId;
-  console.log('bbb')
 
   if (!await acl.isAllowed(userId, 'users', 'edit')) return ctx.throw(403);
 
-  await acl.addUserRoles(ctx.params.id, ctx.body);
+  await acl.removeUserRoles(ctx.params.id, ['server', 'customer']);
+  await acl.addUserRoles(ctx.params.id, ctx.request.body.role);
   ctx.body = null;
 };
 
