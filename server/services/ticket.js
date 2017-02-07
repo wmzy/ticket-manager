@@ -14,6 +14,10 @@ exports.listByCreatorId = async function (creatorId) {
   return await list({creator: creatorId});
 };
 
+exports.listByAssignee = function (assigneeId) {
+  return list({assignee: assigneeId});
+};
+
 exports.getById = async function (id) {
   return Ticket.findById(id)
     .exec();

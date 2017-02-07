@@ -5,7 +5,9 @@ const acl = require('../acl');
 exports.list = async function (ctx) {
   const userId = ctx.state.userId;
 
-  if (await acl.hasRole(userId, 'admin')) return void(ctx.body = await ticketService.list());
+  const roles = await acl.userRoles(userId);
+  if (_.includes(roles, 'admin')) return void(ctx.body = await ticketService.list());
+  if (_.includes(roles, 'server')) return void(ctx.body = await ticketService.listByAssignee());
 
   ctx.body = await ticketService.listByCreatorId(userId);
 };
