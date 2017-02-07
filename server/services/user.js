@@ -2,6 +2,7 @@ const f = require('lodash/fp');
 const _ = require('lodash');
 const mongoose = require('mongoose');
 const acl = require('../acl');
+const config = require('../config');
 
 const User = mongoose.model('User');
 
@@ -25,11 +26,12 @@ exports.getBySymbol = function (symbol) {
 };
 
 exports.list = function (query) {
-  return User.find(query);
+  return User.find(query)
+    .nor([{state: 'removed'}, {username: config.admin.username}]);
 };
 
 exports.listWithRoles = function (query) {
-  return User.find(query)
+  return exports.list(query)
     .then(f.map(u => acl.userRoles(u.id).then(r => _.set(u.toJSON(), 'role', r[0]))))
     .then(promises => Promise.all(promises));
 };
