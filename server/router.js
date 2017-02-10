@@ -10,6 +10,10 @@ const authController = require('./controllers/auth');
 
 const router = new Router({prefix: '/api/v1'});
 
+const currentUserRouter = new Router({prefix: '/user'})
+  .use(jwtMiddleware)
+  .get('/tickets', ticketController.myList);
+
 const ticketRouter = new Router({prefix: '/tickets'})
   .use(jwtMiddleware)
   .get('/', ticketController.list)

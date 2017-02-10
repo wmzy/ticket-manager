@@ -3,6 +3,10 @@ const ticketService = require('../services/ticket');
 const acl = require('../acl');
 
 exports.list = async function (ctx) {
+  ctx.body = await ticketService.list();
+};
+
+exports.myList = async function (ctx) {
   const userId = ctx.state.userId;
 
   const roles = await acl.userRoles(userId);
