@@ -36,6 +36,14 @@ const TicketSchema = Schema({
   state: {
     type: String,
     enum: ['draft', 'open', 'read', 'closed', 'deleted']
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now
   }
 });
 

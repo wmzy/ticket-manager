@@ -6,16 +6,17 @@ const Ticket = mongoose.model('Ticket');
 
 const list = exports.list = function (query) {
   return Ticket.find(query)
+    .sort('-updatedAt')
     .limit(1000)
     .exec();
 };
 
-exports.listByCreatorId = async function (creatorId) {
-  return await list({creator: creatorId});
+exports.listByCreatorId = async function (creatorId, query) {
+  return await list(_.assign(query, {creator: creatorId}));
 };
 
-exports.listByAssignee = function (assigneeId) {
-  return list({assignee: assigneeId});
+exports.listByAssignee = function (assigneeId, query) {
+  return list(_.assign(query, {assignee: assigneeId}));
 };
 
 exports.getById = async function (id) {

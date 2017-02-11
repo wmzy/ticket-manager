@@ -8,12 +8,13 @@ exports.list = async function (ctx) {
 
 exports.myList = async function (ctx) {
   const userId = ctx.state.userId;
+  const query = _.pick(ctx.query, 'state');
 
   const roles = await acl.userRoles(userId);
-  if (_.includes(roles, 'admin')) return void(ctx.body = await ticketService.list());
-  if (_.includes(roles, 'server')) return void(ctx.body = await ticketService.listByAssignee());
+  if (_.includes(roles, 'admin')) return void(ctx.body = await ticketService.list(query));
+  if (_.includes(roles, 'server')) return void(ctx.body = await ticketService.listByAssignee(query));
 
-  ctx.body = await ticketService.listByCreatorId(userId);
+  ctx.body = await ticketService.listByCreatorId(userId, query);
 };
 
 exports.getById = async function (ctx) {
