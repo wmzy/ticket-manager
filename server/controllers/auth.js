@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const jwt = require('jsonwebtoken');
 const config = require('../config');
 const userService = require('../services/user');
@@ -23,8 +24,9 @@ exports.singUp = async function (ctx) {
   ctx.body = {
     authToken: jwt.sign(user.id, config.jwtSecret)
   };
+  userService.setRole(user.id, 'customer').catch(_.noop);
 };
 
-exports.resourcePermissions = function (ctx) {
-  return authService.getResourcePermissions(ctx.state.userId);
+exports.info = async function (ctx) {
+  ctx.body = await authService.getInfo(ctx.state.userId);
 };

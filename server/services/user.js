@@ -44,6 +44,11 @@ exports.create = function (doc) {
   return User.create(doc);
 };
 
+exports.setRole = async function (userId, role) {
+  await acl.removeUserRoles(userId, ['server', 'customer']);
+  await acl.addUserRoles(userId, role);
+};
+
 exports.remove = function (userId) {
   return User.findByIdAndUpdate(userId, {state: 'removed'});
 };

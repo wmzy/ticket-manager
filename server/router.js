@@ -32,9 +32,9 @@ const userRouter = new Router({prefix: '/users'})
 router.use(userRouter.routes());
 
 const authRouter = new Router()
-  .get('/resource-permissions', authController.resourcePermissions)
   .put('/login', authController.login)
-  .post('/sign-up', authController.singUp);
+  .post('/sign-up', authController.singUp)
+  .get('/auth-info', jwtMiddleware, authController.info);
 
 router.use(authRouter.routes());
 

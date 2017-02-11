@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import {Component, ChangeDetectionStrategy} from '@angular/core';
 import {Router} from '@angular/router';
 
@@ -17,6 +18,10 @@ export class MenuComponent {
 
   getLoggedIn() {
     return this.authService.getLoggedIn();
+  }
+
+  isAdmin() {
+    return this.authService.getInfo().map(info => _.includes(info.roles, 'admin'));
   }
 
   logout() {

@@ -27,8 +27,7 @@ exports.setRole = async function (ctx) {
 
   if (!await acl.isAllowed(userId, 'users', 'edit')) return ctx.throw(403);
 
-  await acl.removeUserRoles(ctx.params.id, ['server', 'customer']);
-  await acl.addUserRoles(ctx.params.id, ctx.request.body.role);
+  await userService.setRole(ctx.params.id, ctx.request.body.role);
   ctx.body = null;
 };
 
