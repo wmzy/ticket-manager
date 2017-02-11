@@ -42,6 +42,7 @@ export class AuthService {
       .map(({authToken}) => {
         this._storage.setAuthToken(authToken);
         this._loggedIn.next(true);
+        return true;
       });
   }
 
