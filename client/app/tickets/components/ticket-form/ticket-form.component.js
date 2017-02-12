@@ -34,6 +34,7 @@ export class TicketFormComponent {
   }
 
   onSubmit(validTicket) {
+    console.log(validTicket)
     this.saved.emit(validTicket);
   }
 }
