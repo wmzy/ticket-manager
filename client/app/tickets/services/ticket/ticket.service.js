@@ -7,6 +7,7 @@ import {RequestService} from '../../../auth';
 @Injectable()
 export class TicketService {
   remoteTickets = new BehaviorSubject([]);
+  ticket = new BehaviorSubject({});
 
   constructor(http: Http, request: RequestService) {
     this._http = http;
@@ -39,6 +40,16 @@ export class TicketService {
     console.log('ww')
     return this._http.get(`/api/v1/tickets/${id}`, {headers: this._request.getAuthHeaders()})
       .map(res => res.json());
+    //
+    // ticket.subscribe(
+    //   (ticket) => {
+    //     this.ticket.next(ticket);
+    //   },
+    //   (error) =>{
+    //     console.error(error);
+    //   }
+    // )
+    // return ticket;
   }
 
   updateTicket(ticket) {
