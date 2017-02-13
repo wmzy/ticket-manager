@@ -4,6 +4,7 @@ import { ShortDescriptionPipe } from './pipes/short-description.pipe';
 
 import { ClickCounterDirective } from './directives/click-counter.directive';
 
+import { TicketComponent } from './components/ticket/ticket.component';
 import { TicketFormComponent } from './components/ticket-form/ticket-form.component';
 import { TicketEditComponent } from './components/ticket-edit/ticket-edit.component';
 import { TicketNewComponent } from './components/ticket-new/ticket-new.component';
@@ -18,6 +19,7 @@ export const TICKETS_PROVIDERS = [TicketService];
 export const TICKETS_DECLARATIONS = [
   ShortDescriptionPipe,
   ClickCounterDirective,
+  TicketComponent,
   TicketFormComponent,
   TicketEditComponent,
   TicketNewComponent,

@@ -1,3 +1,4 @@
+import {TicketComponent} from '../tickets/components/ticket/ticket.component';
 import {TicketListComponent} from '../tickets/components/ticket-list/ticket-list.component';
 import {TicketNewComponent} from '../tickets/components/ticket-new/ticket-new.component';
 import {TicketEditComponent} from '../tickets/components/ticket-edit/ticket-edit.component';
@@ -12,6 +13,7 @@ export const routes = [
   {path: '', component: TicketListComponent, pathMatch: 'full'},
   {path: 'new', component: TicketNewComponent, canActivate: [LoggedInGuard]},
   {path: 'edit/:id', component: TicketEditComponent, canActivate: [LoggedInGuard]},
+  {path: 'ticket/:id', component: TicketComponent, canActivate: [LoggedInGuard]},
   {path: 'users', component: UserListComponent, canActivate: [LoggedInGuard]},
   {path: 'about', component: AboutComponent},
   {path: 'join', component: SignUpComponent, canActivate: [LoggedOutGuard]},
