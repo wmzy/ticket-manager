@@ -3,7 +3,7 @@
         <h1>Tickets <a [routerLink]="['new']" *ngIf="authService.getLoggedIn() | async" class="btn btn-primary pull-right">New ticket</a></h1>
 
         <div class="list-group">
-            <ticket-list-item *ngFor="let ticket of getRemoteTickets() | async" [ticket]="ticket"></ticket-list-item>
+            <ticket-list-item [ticket]="getRemoteTickets() | async"></ticket-list-item>
         </div>
     </div>
 </div>

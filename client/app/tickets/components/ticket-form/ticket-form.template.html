@@ -19,7 +19,7 @@
 
   <div class="form-group">
     <label>Priority
-      <select formControlName="priority">
+      <select formControlName="priority" class="form-control">
         <option value="low">low</option>
         <option value="medium">medium</option>
         <option value="high">high</option>
@@ -33,9 +33,8 @@
   </div>
 
   <div class="form-group">
-    <label>Attachments
-      <input type="text" formControlName="attachments" class="form-control">
-    </label>
+    <label>Attachments</label>
+    <input type="file" formControlName="attachments">
   </div>
 
   <button type="submit" [disabled]="!ticketForm.valid" class="btn btn-primary">Save</button>

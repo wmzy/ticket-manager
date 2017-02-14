@@ -1,4 +1,4 @@
-<div class="list-group-item ticket-item" click-counter [id]="'ticket-' + ticket._id">
+<div *ngFor="let ticket of ticket" class="list-group-item ticket-item" click-counter [id]="'ticket-' + ticket._id">
   <a [routerLink]="['edit', ticket._id ]" *ngIf="getLoggedIn() | async" class="btn btn-default pull-right">Edit</a>
 
   <h4 class="list-group-item-heading">
