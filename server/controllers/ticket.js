@@ -12,7 +12,7 @@ exports.myList = async function (ctx) {
 
   const roles = await acl.userRoles(userId);
   if (_.includes(roles, 'admin')) return void(ctx.body = await ticketService.list(query));
-  if (_.includes(roles, 'server')) return void(ctx.body = await ticketService.listByAssignee(query));
+  if (_.includes(roles, 'assignee')) return void(ctx.body = await ticketService.listByAssignee(query));
 
   ctx.body = await ticketService.listByCreatorId(userId, query);
 };

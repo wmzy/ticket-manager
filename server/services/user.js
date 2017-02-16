@@ -30,6 +30,14 @@ exports.list = function (query) {
     .nor([{state: 'removed'}, {username: config.admin.username}]);
 };
 
+exports.assigneeList = async function () {
+  const userIds = await acl.roleUsers('assignee');
+  return User.find()
+    .select('username')
+    .in('_id', userIds)
+    .exec();
+};
+
 exports.listWithRoles = function (query) {
   return exports.list(query)
     .then(f.map(u => acl.userRoles(u.id).then(r => _.set(u.toJSON(), 'role', r[0]))))
@@ -45,7 +53,7 @@ exports.create = function (doc) {
 };
 
 exports.setRole = async function (userId, role) {
-  await acl.removeUserRoles(userId, ['server', 'customer']);
+  await acl.removeUserRoles(userId, ['assignee', 'customer']);
   await acl.addUserRoles(userId, role);
 };
 

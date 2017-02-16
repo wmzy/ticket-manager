@@ -1,7 +1,7 @@
 <div class="list-group-item user-item" [id]="'user-' + user._id">
   <div class="pull-right">
     <label>
-      <input type="radio" [checked]="user.role === 'server'" (click)="setRole('server')" /> 客服
+      <input type="radio" [checked]="user.role === 'assignee'" (click)="setRole('assignee')" /> 客服
     </label>
     <label>
       <input type="radio" [checked]="user.role === 'customer'" (click)="setRole('customer')" /> 客户

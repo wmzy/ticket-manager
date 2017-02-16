@@ -13,6 +13,10 @@ exports.list = async function (ctx) {
   ctx.body = await userService.listWithRoles();
 };
 
+exports.assigneeList = async function (ctx) {
+  ctx.body = await userService.assigneeList();
+};
+
 exports.remove = async function (ctx) {
   const userId = ctx.state.userId;
 
