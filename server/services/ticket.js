@@ -4,23 +4,34 @@ const ObjectId = mongoose.Types.ObjectId;
 
 const Ticket = mongoose.model('Ticket');
 
-const list = exports.list = function (query) {
+function list(query) {
   return Ticket.find(query)
     .sort('-updatedAt')
-    .limit(1000)
+    .limit(1000);
+}
+exports.list = function (query) {
+  return list(query)
+    .populate('assignee', 'username')
+    .populate('creator', 'username')
     .exec();
 };
 
 exports.listByCreatorId = async function (creatorId, query) {
-  return await list(_.assign(query, {creator: creatorId}));
+  return await list(_.assign(query, {creator: creatorId}))
+    .populate('assignee', 'username')
+    .exec();
 };
 
 exports.listByAssignee = function (assigneeId, query) {
-  return list(_.assign(query, {assignee: assigneeId}));
+  return list(_.assign(query, {assignee: assigneeId}))
+    .populate('creator', 'username')
+    .exec();
 };
 
 exports.getById = async function (id) {
   return Ticket.findById(id)
+    .populate('assignee', 'username')
+    .populate('creator', 'username')
     .exec();
 };
 
