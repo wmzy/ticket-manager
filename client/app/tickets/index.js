@@ -13,10 +13,12 @@ import { TicketListItemComponent } from './components/ticket-list-item/ticket-li
 import { TicketListComponent } from './components/ticket-list/ticket-list.component';
 
 export {
-  TicketService
+  TicketService,
 };
 
-export const TICKETS_PROVIDERS = [TicketService];
+export const TICKETS_PROVIDERS = [
+  TicketService,
+];
 export const TICKETS_DECLARATIONS = [
   ShortDescriptionPipe,
   ClickCounterDirective,

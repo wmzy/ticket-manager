@@ -4,6 +4,7 @@ import {FormBuilder, Validators} from '@angular/forms';
 import template from './ticket-form.template.html';
 import {validatorFactory} from '../../validator';
 
+import {UserService} from './../../../users/services/user/user.service';
 @Component({
   selector: 'ticket-form',
   template: template
@@ -13,8 +14,9 @@ export class TicketFormComponent {
 
   @Output() saved = new EventEmitter();
 
-  constructor(builder: FormBuilder) {
+  constructor(builder: FormBuilder, userService: UserService) {
     this._builder = builder;
+    this._userService = userService;
 
     this.ticketForm = this._builder.group({
       id: [''],
@@ -26,6 +28,9 @@ export class TicketFormComponent {
     });
   }
 
+  ngOnInit(){
+    this.assignee = this._userService.getAssignee();
+  }
   ngOnChanges(change) {
     if (change.ticket && change.ticket.currentValue) {
       ['id', 'title', 'assignee', 'priority', 'content', 'attachments']

@@ -29,6 +29,10 @@ export class UserService {
     return usersResponse;
   }
 
+  getAssignee() {
+    return this._http.get(`/api/v1/users/assignees`, {headers: this._request.getAuthHeaders()})
+      .map(res => res.json());
+  }
   addUser(user) {
     return this._http
       .post('/api/v1/users', JSON.stringify(user), {headers: this._request.getAuthHeaders()})

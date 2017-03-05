@@ -37,19 +37,8 @@ export class TicketService {
   }
 
   getTicket(id) {
-    console.log('ww')
     return this._http.get(`/api/v1/tickets/${id}`, {headers: this._request.getAuthHeaders()})
       .map(res => res.json());
-    //
-    // ticket.subscribe(
-    //   (ticket) => {
-    //     this.ticket.next(ticket);
-    //   },
-    //   (error) =>{
-    //     console.error(error);
-    //   }
-    // )
-    // return ticket;
   }
 
   updateTicket(ticket) {
