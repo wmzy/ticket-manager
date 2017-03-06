@@ -19,7 +19,7 @@ export class TicketFormComponent {
     this._userService = userService;
 
     this.ticketForm = this._builder.group({
-      _id: [''],
+      id: [''],
       title: ['', Validators.required],
       assignee: [''],
       priority: ['medium'],
@@ -33,7 +33,7 @@ export class TicketFormComponent {
   }
   ngOnChanges(change) {
     if (change.ticket && change.ticket.currentValue) {
-      ['_id', 'title', 'assignee', 'priority', 'content', 'attachments']
+      ['id', 'title', 'assignee', 'priority', 'content', 'attachments']
         .forEach(k => this.ticketForm.controls[k].setValue(change.ticket.currentValue[k]));
     }
   }

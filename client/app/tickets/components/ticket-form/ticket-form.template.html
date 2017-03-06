@@ -11,7 +11,13 @@
   <div class="form-group">
     <label for="ticket-assignee">Assignee</label>
     <select class="form-control" id="ticket-assignee" formControlName="assignee">
-      <option *ngFor="let item of assignee | async" value="{{item._id}}">{{item.username}}</option>
+      <option
+        *ngFor="let item of assignee | async"
+        value="{{item._id}}"
+        selected="{{ticket?.assignee}}"
+      >
+        {{item.username}}
+      </option>
     </select>
   </div>
   <div *ngIf="ticketForm.controls.assignee.hasError('required') && ticketForm.controls.assignee.touched"
