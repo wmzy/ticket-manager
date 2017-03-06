@@ -10,7 +10,7 @@
 
   <div class="form-group">
     <label for="ticket-assignee">Assignee</label>
-    <select class="form-control" id="ticket-assignee">
+    <select class="form-control" id="ticket-assignee" formControlName="assignee">
       <option *ngFor="let item of assignee | async" value="{{item._id}}">{{item.username}}</option>
     </select>
   </div>
