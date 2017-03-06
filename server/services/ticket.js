@@ -42,7 +42,7 @@ exports.create = function (doc) {
 exports.save = async function (id, doc) {
   const ticket = await Ticket.findById(id);
   if (!ticket) throw new Error('not found');
+  doc._id = id;
   _.assign(ticket, doc);
-  ticket._id = id;
   return ticket.save();
 };

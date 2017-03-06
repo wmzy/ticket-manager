@@ -31,5 +31,5 @@ exports.create = async function (ctx) {
 };
 
 exports.save = async function (ctx) {
-  await ticketService.save(ctx.params.id, ctx.request.body);
+  ctx.body = await ticketService.save(ctx.params.id, ctx.request.body);
 };
