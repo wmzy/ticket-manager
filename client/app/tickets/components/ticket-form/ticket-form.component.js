@@ -29,12 +29,14 @@ export class TicketFormComponent {
   }
 
   ngOnInit(){
+    console.log(this, 'init')
     this.assignee = this._userService.getAssignee();
   }
   ngOnChanges(change) {
     if (change.ticket && change.ticket.currentValue) {
-      ['_id', 'title', 'assignee', 'priority', 'content', 'attachments']
+      ['_id', 'title', 'priority', 'content', 'attachments']
         .forEach(k => this.ticketForm.controls[k].setValue(change.ticket.currentValue[k]));
+    this.ticketForm.controls['assignee'].setValue(change.ticket.currentValue['assignee']._id);
     }
   }
 
