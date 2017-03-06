@@ -14,7 +14,7 @@
       <option
         *ngFor="let item of assignee | async"
         value="{{item._id}}"
-        selected="{{ticket?.assignee}}"
+        selected="{{ticket?.assignee._id == item._id}}"
       >
         {{item.username}}
       </option>
