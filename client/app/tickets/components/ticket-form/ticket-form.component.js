@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import template from './ticket-form.template.html';
@@ -26,15 +27,15 @@ export class TicketFormComponent {
     });
   }
 
-  ngOnInit(){
-    console.log(this, 'init')
+  ngOnInit() {
     this.assignee = this._userService.getAssignee();
   }
+
   ngOnChanges(change) {
     if (change.ticket && change.ticket.currentValue) {
       ['title', 'priority', 'content', 'attachments']
         .forEach(k => this.ticketForm.controls[k].setValue(change.ticket.currentValue[k]));
-    this.ticketForm.controls['assignee'].setValue(change.ticket.currentValue['assignee']._id);
+      this.ticketForm.controls['assignee'].setValue(_.get(change.ticket.currentValue, 'assignee._id'));
     }
   }
 
