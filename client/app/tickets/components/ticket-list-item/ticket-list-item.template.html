@@ -1,13 +1,15 @@
 <div *ngFor="let ticket of ticket" class="list-group-item ticket-item" click-counter [id]="'ticket-' + ticket._id">
   <a [routerLink]="['edit', ticket._id ]" *ngIf="getLoggedIn() | async"
      class="btn btn-default pull-right btn-xs">Edit</a>
-
+  <small class="pull-right rows">{{ticket.updatedAt | date}}</small>
+  <small>#{{ticket._id}}</small>
   <a [routerLink]="['ticket', ticket._id]">{{ ticket.title }}</a>
   <small *ngIf="ticket.state == 'draft'" class="label label-default">{{ticket.state}}</small>
   <small *ngIf="ticket.state == 'open'" class="label label-primary">{{ticket.state}}</small>
   <small *ngIf="ticket.state == 'read'" class="label label-info">{{ticket.state}}</small>
   <small *ngIf="ticket.state == 'closed'" class="label label-warning">{{ticket.state}}</small>
   <small *ngIf="ticket.state == 'deleted'" class="label label-danger">{{ticket.state}}</small>
+  <label class="">{{ticket.creator.username}}</label>
 
   <p class="list-group-item-text">{{ ticket.description | short_description }}</p>
 </div>

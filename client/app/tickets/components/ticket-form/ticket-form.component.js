@@ -21,7 +21,7 @@ export class TicketFormComponent {
     this.ticketForm = this._builder.group({
       _id: [''],
       title: ['', Validators.required],
-      assignee: [''],
+      assignee: ['select'],
       priority: ['medium'],
       content: [''],
       attachments: ['']
