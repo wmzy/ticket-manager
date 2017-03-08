@@ -1,6 +1,15 @@
 <div>
   <div class="page-header">
-    <h2>{{ticketPage?.title}} <small>{{ticketPage?.creator}} created at {{ticketPage?.createdAt | date}}</small> <small class="label label-success">{{ticketPage?.state}}</small></h2>
+    <h2>
+      {{ticketPage?.title}}
+      <small>{{ticketPage?.creator.username}} created at {{ticketPage?.createdAt | date}}</small>
+
+      <small *ngIf="ticketPage?.state == 'draft'" class="label label-default">{{ticketPage?.state}}</small>
+      <small *ngIf="ticketPage?.state == 'open'" class="label label-primary">{{ticketPage?.state}}</small>
+      <small *ngIf="ticketPage?.state == 'read'" class="label label-info">{{ticketPage?.state}}</small>
+      <small *ngIf="ticketPage?.state == 'closed'" class="label label-warning">{{ticketPage?.state}}</small>
+      <small *ngIf="ticketPage?.state == 'deleted'" class="label label-danger">{{ticketPage?.state}}</small>
+    </h2>
   </div>
   <div class="ticket-content well well-lg">{{ticketPage?.content}}</div>
   <blockquote>
