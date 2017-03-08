@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
-
 import template from './ticket-form.template.html';
 import {validatorFactory} from '../../validator';
 
@@ -19,7 +18,6 @@ export class TicketFormComponent {
     this._userService = userService;
 
     this.ticketForm = this._builder.group({
-      _id: [''],
       title: ['', Validators.required],
       assignee: ['select'],
       priority: ['medium'],
@@ -34,14 +32,13 @@ export class TicketFormComponent {
   }
   ngOnChanges(change) {
     if (change.ticket && change.ticket.currentValue) {
-      ['_id', 'title', 'priority', 'content', 'attachments']
+      ['title', 'priority', 'content', 'attachments']
         .forEach(k => this.ticketForm.controls[k].setValue(change.ticket.currentValue[k]));
     this.ticketForm.controls['assignee'].setValue(change.ticket.currentValue['assignee']._id);
     }
   }
 
   onSubmit(validTicket) {
-    console.log(validTicket)
     this.saved.emit(validTicket);
   }
 }
