@@ -1,4 +1,5 @@
 dist
+uploads
 .idea
 *.*___jb_tmp___
 node_modules
