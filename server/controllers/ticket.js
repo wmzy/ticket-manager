@@ -23,7 +23,7 @@ exports.getById = async function (ctx) {
 };
 
 exports.create = async function (ctx) {
-  const doc = _.omit(ctx.request.body, 'id', 'attachments');
+  const doc = _.omit(ctx.request.body, 'id');
   doc.creator = ctx.state.userId;
   doc.state = 'open';
   ctx.body = await ticketService.create(doc);

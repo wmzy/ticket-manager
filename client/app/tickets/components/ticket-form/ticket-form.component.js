@@ -23,7 +23,7 @@ export class TicketFormComponent {
       assignee: ['select'],
       priority: ['medium'],
       content: [''],
-      attachments: ['']
+      attachments: this._builder.array([])
     });
   }
 
