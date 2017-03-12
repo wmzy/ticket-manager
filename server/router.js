@@ -8,6 +8,7 @@ const multer = require('koa-multer');
 const upload = multer({dest: config.uploadPath});
 
 const ticketController = require('./controllers/ticket');
+const replyController = require('./controllers/reply');
 const userController = require('./controllers/user');
 const authController = require('./controllers/auth');
 const fileController = require('./controllers/file');
@@ -23,11 +24,20 @@ router.use(currentUserRouter.routes());
 const ticketRouter = new Router({prefix: '/tickets'})
   .use(jwtMiddleware)
   .get('/', ticketController.list)
+  .get('/:id/replies', ticketController.listReplies)
   .get('/:id', ticketController.getById)
   .put('/:id', ticketController.save)
   .post('/', ticketController.create);
 
 router.use(ticketRouter.routes());
+
+const replyRouter = new Router({prefix: '/replies'})
+  .use(jwtMiddleware)
+  .get('/:id', replyController.getById)
+  .put('/:id', replyController.save)
+  .post('/', replyController.create);
+
+router.use(replyRouter.routes());
 
 const fileRouter = new Router({prefix: '/files'})
   .use(jwtMiddleware)

@@ -3,16 +3,24 @@ const mongoose = require('mongoose');
 const ObjectId = mongoose.Types.ObjectId;
 
 const Ticket = mongoose.model('Ticket');
+const Reply = mongoose.model('Reply');
 
 function list(query) {
   return Ticket.find(query)
     .sort('-updatedAt')
     .limit(1000);
 }
+
 exports.list = function (query) {
   return list(query)
     .populate('assignee', 'username')
     .populate('creator', 'username')
+    .exec();
+};
+
+exports.getReplies = function (id) {
+  return Reply
+    .where('ticket', id)
     .exec();
 };
 

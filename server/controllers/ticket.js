@@ -1,9 +1,14 @@
 const _ = require('lodash');
 const ticketService = require('../services/ticket');
+const replyService = require('../services/reply');
 const acl = require('../acl');
 
 exports.list = async function (ctx) {
   ctx.body = await ticketService.list();
+};
+
+exports.listReplies = async function (ctx) {
+  ctx.body = await replyService.getReplies(ctx.params.id);
 };
 
 exports.myList = async function (ctx) {
