@@ -7,7 +7,7 @@ module.exports = {
   env: environment,
   port: process.env.PORT || 9000,
   staticPath: path.resolve(__dirname, localStaticPath),
-  uploadPath: path.resolve(__dirname, 'uploads'),
+  uploadPath: path.resolve(__dirname, '../uploads'),
   jwtSecret: process.env.JWT_SECRET || 'ticket-manager-secret',
   admin: {
     username: 'admin',
